@@ -1,0 +1,381 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=26mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,array}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[colorlinks=true,allcolors=blue,breaklinks=true]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\bop}{Banica--\"Ozteke--Pittau}
+\title{Extending Banica--\"Ozteke--Pittau's Fourier defect theory:\protect\\
+a correction to their truncation conjecture}
+\author{Haobo Ma\\\small ChronoAI Pte Ltd, Singapore
+\and Wenlin Zhang\\\small National University of Singapore\\\small ChronoAI Pte Ltd, Singapore}
+\date{14 November 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Extending Banica--\"Ozteke--Pittau's Fourier defect theory, we refute
+their Conjecture~1.14
+(\emph{Isolated partial Hadamard matrices, and related topics},
+arXiv:1706.00986v2, p.~9): Fourier incidence equations and the analytic
+implicit-function theorem give non-isolation after any two row deletions
+at every prime order $p\geq5$.
+For any nonempty proper row set of size $m$, the local
+dephased solution space is a real-analytic manifold of dimension
+$(m-1)(p-m-1)$. Thus among the nonempty prime Fourier truncations,
+precisely those with $m=1,p-1,p$ are isolated, and no fixed positive
+density margin ensures isolation.
+We also give an explicit defect formula for every row truncation of a
+finite abelian Fourier matrix; its zero-cycle case has the same analytic
+dimension formula with $p$ replaced by the group order.
+\end{abstract}
+
+\section{The question and the sharp replacement}
+Put $\zeta=\exp(2\pi i/p)$, where $p$ is prime, and let
+$\varnothing\ne S\subseteq\Z/p\Z$, with $m=|S|$.
+The matrix $F_{S,p}=(\zeta^{sj})_{s\in S,\,j\in\Z/p\Z}$ has unit-modulus
+entries and orthogonal rows, hence is partial Hadamard in the sense of
+\cite[Definition 1.1]{BOP}. Indeed, for $s\ne t$,
+$\sum_{j=0}^{p-1}\zeta^{(s-t)j}=0$ by the geometric-series identity.
+Isolation means isolation after multiplication of rows and columns by
+unit scalars; allowing permutations does not alter local isolation,
+since they form a finite group. A local phase slice will make this precise.
+The density conjecture in \cite[Conjecture 1.14, p.~9]{BOP} is the assertion
+\[
+\exists\varepsilon>0\ \forall p\text{ prime}\ \forall S\subseteq\Z/p\Z,
+\qquad |S|\geq(1-\varepsilon)p\ \Longrightarrow\ F_{S,p}\text{ isolated}.
+\]
+Its following paragraph reports evidence that
+\begin{quote}\small
+``$F_{p-1,p}$ should be always isolated'' and
+``$F_{p-2,p}$ should be isolated too, provided that $p$ is big enough''.
+\end{quote}
+The first suggestion holds; the second fails. The following
+dimension formula gives a sharp replacement, including the one-row boundary.
+
+The closest prior method is the Fourier-transformed tangent-space
+description in \cite[Proposition~1.10 and Theorem~1.13]{BOP}, following
+the square-matrix defect theory of Tadej--\.{Z}yczkowski
+\cite[Theorems~5.2--5.3]{TZ} and Banica \cite[Theorem~4.2]{Defect}.
+The square prime boundary is an established rigidity result:
+Tadej--\.{Z}yczkowski credit it to Petrescu's 1997 thesis
+\cite[Introduction and Section~5.1(i)]{TZ}.
+Here path incidence makes the proper-prime orthogonality map regular;
+this integrates the tangent space and determines the actual local
+geometry, rather than only its linearized dimension.
+
+\begin{theorem}\label{thm:dimension}
+If $p$ is prime and $\varnothing\ne S\subsetneq\Z/p\Z$, then a neighborhood
+of $F_{S,p}$ in a fixed dephased slice of partial Hadamard matrices is a
+real-analytic manifold of dimension
+\begin{equation}\label{eq:dimension}
+D(m,p)=(m-1)(p-m-1).
+\end{equation}
+Consequently, $F_{S,p}$ is non-isolated if $2\leq m\leq p-2$, and is
+isolated if $m=1$ or $m=p-1$.
+\end{theorem}
+
+\begin{corollary}\label{cor:counterexample}
+For every prime $p\geq5$, deleting any two rows of $F_p$ gives a
+non-isolated partial Hadamard matrix, with local dephased dimension $p-3$.
+There is no $\varepsilon>0$ as in Conjecture 1.14.
+\end{corollary}
+\begin{proof}
+Take $m=p-2$ in Theorem~\ref{thm:dimension}. Given $\varepsilon>0$, choose
+a prime $p>\max\{3,2/\varepsilon\}$. Then $p-2>(1-\varepsilon)p$, while
+every such truncation is non-isolated.
+\end{proof}
+
+\section{The phase differential has full rank}
+Near $F_{S,p}$ every unit-modulus matrix has unique small real phase
+coordinates
+\[
+H(\theta)_{sj}=\zeta^{sj}e^{i\theta_{sj}},\qquad\theta\in\R^{S\times\Z/p\Z}.
+\]
+Choose one ordering of $S$ and put
+\[
+\Phi_{st}(\theta)=\sum_{j=0}^{p-1}\zeta^{(s-t)j}
+       e^{i(\theta_{sj}-\theta_{tj})}\quad(s<t).
+\]
+This real-analytic map has values in $\C^{\binom m2}$, regarded as a
+real space of dimension $m(m-1)$. Its zero set is exactly the partial
+Hadamard condition in these coordinates. At zero its differential is
+\begin{equation}\label{eq:jacobian}
+(J A)_{st}=i\sum_{j=0}^{p-1}\zeta^{(s-t)j}(A_{sj}-A_{tj}).
+\end{equation}
+
+\begin{lemma}\label{lem:surjectivity}
+For a proper row set $S$, the real-linear map $J$ is surjective.
+\end{lemma}
+\begin{proof}
+The case $p=2$ has at most one retained row and zero-dimensional target.
+Suppose $p$ is odd. For a real row $A_s$ write
+\[
+x_s(d)=\sum_j\zeta^{dj}A_{sj},\qquad
+x_s(-d)=\overline{x_s(d)}.
+\]
+Conversely, arbitrary coefficients satisfying this conjugacy condition
+and $x_s(0)\in\R$ give a real row by
+$A_{sj}=p^{-1}\sum_d\zeta^{-dj}x_s(d)$.
+
+To prescribe $(JA)_{st}=y_{st}$ for $s<t$, prescribe
+$b_{st}=-iy_{st}$ and extend by
+$b_{ts}=-\overline{b_{st}}$. We need
+\begin{equation}\label{eq:edge}
+x_s(s-t)-x_t(s-t)=b_{st}\quad(s\ne t).
+\end{equation}
+For one representative $d$ from each pair $\{d,-d\}$, consider the graph
+on $S$ with edges joining vertices whose difference is $d$ or $-d$.
+Addition by $d$ is a single cycle on $\Z/p\Z$ because $p$ is prime.
+Since at least one vertex is absent, its induced graph on $S$ is a union
+of paths and isolated vertices. For each edge orient it as $(s,t)$ with
+$s-t=d$ and prescribe the difference of the complex potentials
+$x_s(d)-x_t(d)=b_{st}$. Start each path with potential zero and extend
+successively along its edges; there is no cycle consistency condition.
+Now set $x_s(-d)=\overline{x_s(d)}$ and $x_s(0)=0$. The reverse equation
+in \eqref{eq:edge} becomes
+$\overline{x_t(d)}-\overline{x_s(d)}=-\overline{b_{st}}=b_{ts}$,
+so all ordered row pairs are satisfied. Fourier inversion gives real
+$A$ satisfying \eqref{eq:jacobian}, as required.
+\end{proof}
+
+\section{From the differential to actual deformations}
+Fix $s_0\in S$ and column $0$. Additive row and column phases form
+\[
+T=\{(a_s+b_j)_{sj}:a\in\R^S,\ b\in\R^p\}.
+\]
+The parameter map has the one-dimensional kernel
+$a_s=c$, $b_j=-c$, so $\dim T=m+p-1$.
+Define the slice
+$V=\{\theta:\theta_{s0}=\theta_{s_0j}=0\text{ for all }s,j\}$.
+Every phase array has the unique decomposition into an element of $V$
+and an element of $T$, obtained by the dephasing formula
+\begin{equation}\label{eq:slice}
+(\mathcal D\theta)_{sj}
+=\theta_{sj}-\theta_{s0}-\theta_{s_0j}+\theta_{s_00}.
+\end{equation}
+Thus $\dim V=(m-1)(p-1)$. This is a slice relative to $F_{S,p}$;
+its fixed base row need not consist of ones.
+
+Adding $a_s+b_j$ to $\theta_{sj}$ multiplies $\Phi_{st}$ by
+$e^{i(a_s-a_t)}$, and hence preserves its zero set. Also $T\subseteq\ker J$.
+Because $\R^{S\times\Z/p\Z}=V\oplus T$, Lemma~\ref{lem:surjectivity}
+implies that $J|_V$ is surjective. The real-analytic implicit-function
+theorem therefore makes $(\Phi|_V)^{-1}(0)$ near zero a manifold of dimension
+\[
+\dim V-m(m-1)=(m-1)(p-m-1),
+\]
+proving \eqref{eq:dimension}. All hypotheses hold: $\Phi$ is a finite sum
+of exponentials of linear functions, $\Phi(0)=0$, and its slice derivative
+has just been proved surjective.
+
+If this dimension is positive, take any nonzero coordinate line in a
+local analytic chart. It gives an analytic curve $\theta(t)\in V$ of
+zeros with nonzero derivative. The resulting matrices $H(\theta(t))$
+are not obtained by row and column multiplication of $F_{S,p}$:
+the fixed base row and column would force every multiplier to cancel,
+making the entire matrix equal to $F_{S,p}$. This argument allows arbitrary
+parameter-dependent multipliers; it does not differentiate them.
+The finite permutation group cannot turn a positive-dimensional
+slice into an isolated point.
+If the dimension is zero, the implicit-function chart contains just one
+point, so the truncation is locally isolated. For $m=1$ the slice is
+already the zero space. This completes Theorem~\ref{thm:dimension}.
+
+\begin{corollary}[Sharp isolation and minimal defect]\label{cor:classification}
+A nonempty $m$-row truncation of $F_p$ is isolated exactly for
+$m\in\{1,p-1,p\}$, and exactly when its undephased defect is $m+p-1$.
+For $m<p$, its undephased defect is $m(p-m+1)$; for $m=p$, it is $2p-1$.
+\end{corollary}
+\begin{proof}
+For proper sets the defect is $mp-m(m-1)$ by Lemma~\ref{lem:surjectivity}.
+Theorem~\ref{thm:dimension} gives isolation precisely when the quotient
+dimension vanishes. The full prime Fourier matrix is isolated as well
+\cite[Section~5.1(i)]{TZ}, \cite[Proposition~1.12]{BOP}.
+For a direct proof in the same coordinates,
+when $S=\Z/p\Z$, the kernel equations at each nonzero frequency say that
+$x_s(d)$ is constant along the whole step-$d$ cycle, hence independent
+of $s$. Fourier inversion then gives $A_{sj}=a_s+b_j$.
+For $p=2$, the same statement uses one real coefficient at $d=1$.
+Thus $\ker J=T$ and $J|_V$ is injective. Select a linear map from its
+target to $V$ whose composition with $J|_V$ is the identity. Composing
+$\Phi|_V$ with that map gives a square map with invertible derivative;
+the inverse-function theorem makes its zero locally unique. In particular
+the zero of $\Phi|_V$ is unique. Also $\ker J=T$ has dimension $2p-1$.
+\end{proof}
+
+\begin{corollary}[Every tangent is integrable]\label{cor:tangents}
+For a proper prime Fourier row set, every $A\in\ker J$ is the phase
+velocity at zero of a real-analytic curve of partial Hadamard matrices.
+\end{corollary}
+\begin{proof}
+The surjective derivative makes $\Phi^{-1}(0)$ an analytic manifold
+with tangent space $\ker J$. Choose an analytic chart $\psi$ at zero.
+Its derivative maps the coordinate space isomorphically onto $\ker J$;
+choose $u$ with $D\psi(0)u=A$ and set $\theta(t)=\psi(tu)$.
+Then $\theta'(0)=A$ and $H(\theta(t))$ is the required curve.
+\end{proof}
+
+\section{An explicit defect formula beyond prime order}
+Let $G$ be a finite abelian group, $N=|G|\geq2$, and
+$\varnothing\ne S\subseteq G$, $m=|S|$. Index the columns by the
+character group $\widehat G$ and put $F_{S,G}(s,\chi)=\chi(s)$.
+For $d\ne0$, let $c_d(S)$ count the cosets of $\langle d\rangle$
+contained entirely in $S$, and put $C(S)=\sum_{d\ne0}c_d(S)$.
+The undephased defect $d(F_{S,G})$ means the real dimension of the
+kernel of the orthogonality differential, as in
+\cite[Definition~1.4 and Proposition~1.5]{BOP}.
+
+\begin{corollary}[Finite abelian defect and regularity]\label{cor:abelian}
+Every such truncation satisfies
+\begin{equation}\label{eq:generaldefect}
+d(F_{S,G})=m(N-m+1)+C(S).
+\end{equation}
+Its orthogonality differential is surjective if and only if $C(S)=0$.
+In that case its local dephased space is an analytic manifold of
+dimension $(m-1)(N-m-1)$.
+\end{corollary}
+\begin{proof}
+Fourier coefficients $x_s(d)=\sum_{\chi\in\widehat G}\chi(d)A_{s\chi}$
+give a real-linear bijection between real phase arrays and arrays with
+$x_s(-d)=\overline{x_s(d)}$, by character orthogonality and inversion.
+The kernel equations are $x_s(d)=x_{s-d}(d)$ whenever $s,s-d\in S$.
+Let $k_d$ be the number of connected components of the graph on $S$
+joining $s$ to $s+d$ when both are retained. At $d=0$ there are $m$
+free real coefficients. For $d\ne-d$, the pair $d,-d$ contributes
+$2k_d$ real dimensions; for $d=-d\ne0$, it contributes $k_d$ real
+dimensions. Thus $d(F_{S,G})=m+\sum_{d\ne0}k_d$.
+
+Put $n_d=|\{s\in S:s+d\in S\}|$. If the order of $d$ is at least
+three, the full step-$d$ graph is a union of cycles and its induced graph
+is a union of paths and $c_d(S)$ complete cycles. Hence
+$k_d=m-n_d+c_d(S)$. If $d$ has order two, each retained edge is a
+whole coset, counted twice in $n_d$; then $n_d=2c_d(S)$ and
+$k_d=m-c_d(S)=m-n_d+c_d(S)$ again.
+Finally $\sum_{d\ne0}n_d=m(m-1)$ counts the ordered distinct row pairs,
+which proves \eqref{eq:generaldefect}. Rank--nullity gives
+$\operatorname{rank}_{\R}J=m(m-1)-C(S)$, so regularity is equivalent
+to $C(S)=0$. The dephasing and analytic level-set argument of Section~3
+then applies unchanged with $p$ replaced by $N$.
+\end{proof}
+
+For a proper subset of a prime cyclic group, $c_d(S)=0$ for every
+$d\ne0$, recovering Theorem~\ref{thm:dimension}.
+For $S=G$, $c_d(G)=[G:\langle d\rangle]$, recovering the known
+square formula \cite[Theorem~4.2]{Defect}.
+At composite cyclic order the correction is concrete: for
+$G=\Z/4\Z$ and $S=\{0,2\}$, only $c_2(S)=1$, so the defect is $7$,
+not the prime-case value $6$. For $G=\Z/8\Z$ and $S=\{0,1,2\}$,
+no complete nontrivial cyclic coset is retained, so the local dephased
+dimension is $(3-1)(8-3-1)=8$.
+When $C(S)>0$, formula~\eqref{eq:generaldefect} computes a tangent
+dimension; it makes no claim that all tangents integrate.
+
+\section{Coverage and verification}
+The later exposition \cite[Conjecture 8.36, pp.~199--200]{Banica}
+repeats the density assertion and the two boundary suggestions.
+Its Exercise 8.39 asks for defects of Fourier truncations.
+Corollary~\ref{cor:abelian} answers that exercise for arbitrary finite
+abelian groups and all nonempty row sets. The defect counts first-order
+solutions; Theorem~\ref{thm:dimension} and the regular case of
+Corollary~\ref{cor:abelian} also integrate them after dephasing.
+
+\begin{center}\small
+\begin{tabular}{@{}p{.43\linewidth}p{.50\linewidth}@{}}\toprule
+Source item & Mathematical coverage\\\midrule
+\cite{BOP}, Conj.~1.14; \cite{Banica}, Conj.~8.36 &
+Refuted-and-corrected: isolation iff $m\in\{1,p-1,p\}$, by
+Corollaries~\ref{cor:counterexample} and \ref{cor:classification}.\\
+Paragraph after Conj.~1.14: $p-2$ rows &
+Refuted-and-corrected: non-isolated for every prime $p\geq5$,
+dimension $p-3$.\\
+Same paragraph: $p-1$ rows & Proved: isolated by the zero-dimensional slice.\\
+\cite{BOP}, Prop.~1.12 & Prior proof cited: full-prime rigidity;
+also proved directly in Corollary~\ref{cor:classification}.\\
+\cite{BOP}, Conj.~1.8; \cite{Banica}, Conj.~8.32 &
+Proved on the prime Fourier family, Corollary~\ref{cor:classification};
+the general conjecture is not covered.\\
+Comment after \cite{BOP}, Conj.~1.8 (p.~7) &
+Not posed for this family; proved: every proper-prime tangent
+integrates by Corollary~\ref{cor:tangents}. The suggested broader
+phenomenon is not covered.\\
+\cite{BOP}, Conj.~4.5 & Not covered for its output matrices.
+Its isolated Fourier inputs have exactly $m=1,p-1,p$;
+the stated input hypothesis is retained.\\
+\cite{BOP}, Conjs.~2.4--2.6, 2.10, 3.7, 3.9, 6.3--6.4 &
+Not covered in their general settings: regularity, master matrices,
+and almost Hadamard matrices require additional arguments.\\
+\cite{Banica}, Ex.~8.39 & Answered: yes. Formula~\eqref{eq:generaldefect}
+gives the defect for every finite abelian group and row set.\\
+General regularity criterion & Not posed; proved:
+$C(S)=0$ exactly characterizes surjectivity, with analytic dimension
+$(m-1)(N-m-1)$. Singular composite isolation is not covered.\\\bottomrule
+\end{tabular}
+\end{center}
+
+The semigroup classification question after \cite[Theorem~5.9, p.~22]{BOP}
+and the quantum-deformation question after \cite[Definition~6.2, p.~22]{BOP}
+are not covered. The square master classification of
+\cite[Conjecture~3.9]{BOP} remains a square question: the isolated
+rectangular master matrices $F_{p-1,p}$ do not refute it.
+
+The written proofs above establish the complete dimension and isolation
+classification. The following declarations, each linked to its exact
+Lean source, give the indicated formal statements.
+\begin{itemize}
+\item \href{https://github.com/the-omega-institute/trureturing/blob/43ced8a8460ce89a7c5cae3deeac10e5fc08d565/D5/S3/Quantum/Tomography/Hadamard/BanicaCycleForestIncidence.lean}{\texttt{BanicaCycleForestIncidence.lean}}:
+\par\texttt{cycle\_incidence\_surjective} integrates edge data on a proper
+subset with unit step, for any positive modulus and abelian coefficient group.
+\item \href{https://github.com/the-omega-institute/trureturing/blob/43ced8a8460ce89a7c5cae3deeac10e5fc08d565/D5/S3/Quantum/Tomography/Hadamard/BanicaTruncationJacobian.lean}{\texttt{BanicaTruncationJacobian.lean}}:
+\texttt{fourier\_jacobian\_surjective} proves the prime proper-subset
+surjectivity, and \texttt{phase\_jacobian\_rank\_nullity} gives the kernel count.
+\item \href{https://github.com/the-omega-institute/trureturing/blob/43ced8a8460ce89a7c5cae3deeac10e5fc08d565/D5/S3/Quantum/Tomography/Hadamard/BanicaLevelSetCurve.lean}{\texttt{BanicaLevelSetCurve.lean}}:
+\texttt{analytic\_level\_set\_curve} realizes a regular analytic
+level-set tangent by a global real-analytic curve, up to a positive scalar.
+Its regularity parameter \texttt{ContDiff} $\R$ $\top$ denotes
+analytic order $\omega$ in the source's Mathlib version.
+\item \href{https://github.com/the-omega-institute/trureturing/blob/43ced8a8460ce89a7c5cae3deeac10e5fc08d565/D5/S3/Quantum/Tomography/Hadamard/BanicaTruncationRefutation.lean}{\texttt{BanicaTruncationRefutation.lean}}:
+\texttt{two\_row\_truncation\_not\_isolated} proves non-isolation for every
+prime $p\geq5$ and every $|S|=p-2$; \texttt{result} proves the negation
+of the uniform-density assertion. Its trivial class permits arbitrary
+row and column phase functions, and so includes the fixed-exponent
+trivial curves of \cite[Definition 1.3]{BOP}.
+\end{itemize}
+The sharp slice dimension, tangent integration with an exact local
+velocity, one-row boundary, isolation classification and finite abelian
+formula are written proofs, not the statements of the final Lean result.
+The accompanying \texttt{verify.py} and \texttt{verify\_cyclic.py} give
+exact finite-field Jacobian ranks and finite graph checks for the
+explicitly listed cyclic and finite abelian examples. These checks
+illustrate the formulas rather than replace their proofs.
+
+\begin{thebibliography}{9}
+\bibitem{TZ} W.~Tadej and K.~\.{Z}yczkowski, \emph{Defect of a unitary matrix},
+Linear Algebra Appl. \textbf{429} (2008), 447--481.
+\href{https://doi.org/10.1016/j.laa.2008.02.036}{doi:10.1016/j.laa.2008.02.036}.
+Text locators refer to \href{https://arxiv.org/abs/math/0702510v2}{arXiv:math/0702510v2}
+(20 December 2007).
+\bibitem{Defect} T.~Banica, \emph{The defect of generalized Fourier matrices},
+Linear Algebra Appl. \textbf{438} (2013), 3667--3688.
+\href{https://doi.org/10.1016/j.laa.2013.01.011}{doi:10.1016/j.laa.2013.01.011}.
+Text locators refer to \href{https://arxiv.org/abs/1210.2556v2}{arXiv:1210.2556v2}
+(8 January 2013).
+\bibitem{BOP} T.~Banica, D.~\"Ozteke and L.~Pittau,
+\emph{Isolated partial Hadamard matrices, and related topics},
+Open Systems \& Information Dynamics \textbf{25} (2018), no.~2, 1850009.
+\href{https://doi.org/10.1142/S1230161218500099}{doi:10.1142/S1230161218500099}.
+Text locators refer to \href{https://arxiv.org/abs/1706.00986v2}{arXiv:1706.00986v2}
+(7 October 2017).
+\bibitem{Banica} T.~Banica, \emph{Invitation to Hadamard matrices},
+\href{https://arxiv.org/abs/1910.06911v9}{arXiv:1910.06911v9}
+(29 July 2024), Section~8d, pp.~195--200.
+\end{thebibliography}
+\noindent\small\textcopyright\ 2026 Haobo Ma and Wenlin Zhang.
+Licensed under Creative Commons Attribution 4.0 International
+(\href{https://creativecommons.org/licenses/by/4.0/}{CC BY 4.0}).
+\end{document}
