@@ -28,9 +28,9 @@
         "name": "Wenlin Zhang"
       }
     ],
-    "concept_doi": null,
+    "concept_doi": "10.5281/zenodo.24411965",
     "current_version": 2,
-    "doi": null,
+    "doi": "10.5281/zenodo.24411966",
     "lean_source": {
       "revision": "43ced8a8460ce89a7c5cae3deeac10e5fc08d565",
       "url": "https://github.com/the-omega-institute/trureturing/blob/43ced8a8460ce89a7c5cae3deeac10e5fc08d565/D5/S3/Quantum/Tomography/Hadamard/BanicaTruncationRefutation.lean"
